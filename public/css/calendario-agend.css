@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+:root {
+    --fc-border-color: #343434;                           /* cor da borda do calendário                         */
+    --fc-today-bg-color: #b4e796;                         /* cor do dia atual (hoje)                            */
+    --fc-button-bg-color: #68ce2c;                        /* cor dos botões                                     */
+    --fc-button-border-color: #68ce2c;                    /* cor da borda dos botões                            */
+    --fc-button-hover-bg-color: #58af26;                  /* cor do hover dos botões                            */
+    --fc-button-hover-border-color: #4f9e22;              /* cor da borda do hover dos botões                   */
+    --fc-button-active-bg-color: #58af26;                 /* cor do botão quando está selecionado               */
+    --fc-button-active-border-color: #4f9e22;             /* cor da borda do botão quando está selecionado      */
+}
+
+.caixa {
+    margin-top: 2rem;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.div-principal {
+    width: 90%;
+    margin: 0px auto;
+}   

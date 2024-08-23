@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+h3 {
+    text-align: center;
+    font-weight: 600;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    font-size: 16px;
+    width: 42px;
+    height: 42px;
+}
+
+th {
+    color: #828282;
+    font-weight: 500;
+}
+
+td {
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.calendar-container {
+    position: relative;
+    top: 80px;
+    left: 80px;
+    display: block;
+    justify-content: center;
+    background-color: #fff;
+    width: 380px;
+    height: 100%;
+    padding: 14px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.header-calendar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+#calendar{
+    display: flex;
+    justify-content: center;
+}
+
+.dia-atual {
+    background-color: #c6c6c6;
+}
+
+.highlight {
+    background-color: #68ce2c;
+    color: #fff;
+}
+
+.other-month {
+    color: #828282;
+}
+
+#prev, #next {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.agend {
+    display: block;
+    position: relative;
+    top: 80px;
+    left: 120px;
+    width: 60%;
+    height: 500px;
+}
+
+h2 {
+    font-weight: 500;
+    color: #343434;
+}
+
+#data-agend {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 16px;
+    color: #6c6c6c;
+}
+
+.header-agend {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #343434;
+}
+
+/* Seleção horário */
+.titulo-step {
+    text-align: start;
+    margin-top: 26px;
+    font-weight: 500;
+    color: #343434;
+    margin-left: 30px;
+}
+
+.horario {
+    display: flex;
+    margin: 30px;
+}
+
+.input-horario {
+    position: relative;
+}
+
+.input-horario input[type="number"] {
+    width: 60px;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+/* Seleção equipamento */
+
+#select-equip {
+    margin: 22px 0 0 30px;
+    font-size: 16px;
+}
+
+/* Botão confirmar */
+.btn-confirmar {
+    font-size: 18px;
+    margin: 60px 0 0 30px;
+    color: #fff;
+    background-color: #68ce2c;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+}
+
+.btn-confirmar:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+/* FORM */
+.form-stepper {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#form-steps {
+    margin: 50px;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.label {
+    padding: 12px;
+    text-align: center;
+}
+
+.progress-line {
+    position: relative;
+    height: 2px;
+    width: 330px;
+    top: 2.3vh;
+    border-radius: 1px;
+    background: #343434;
+}
+
+.progress-line-completed {
+    background: #68ce2c;
+}
+
+.step-elem {
+    margin-top: 2rem;
+}
+
+.form-step {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 3rem;
+}
+
+.div-none {
+    display: none;
+}
+
+.form-stepper .span-circle {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.form-stepper .form-stepper-unfinishedcle {
+    background-color: #d9d9d9;
+    border: solid 2px #343434;
+    transition: 0.3s;
+}
+
+.form-stepper .form-stepper-active {
+    background-color: #343434;
+    color: #d9d9d9;
+    transition: 0.3s;
+}
+
+.form-stepper .form-stepper-completed  {
+    background-color: #68ce2c;
+    border-color: #68ce2c;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+.button {
+    width: 160px;
+    padding: 8px 20px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.btn-next, .submit-btn {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #68ce2c;
+}
+
+.btn-next:hover, .submit-btn:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+.btn-prev {
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+    color: #d9d9d9;
+    background-color: #343434;
+}
+
+.btn-prev:hover {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 8px #2c2c2c;
+}
+
+
+/* 1- horário */
+.input-time {
+    font-size: 28px;
+    padding: 4px;
+    color: #343434;
+    font-weight: 500;
+    border: 1px solid #343434;
+    border-radius: 15px;
+    background-color: transparent;
+}
+
+/* 2- APARELHO/ */
+.lista-aparelhos {
+    display: flex;
+}

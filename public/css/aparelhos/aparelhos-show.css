@@ -1,0 +1,118 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 100px 0px 30px 0px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .25);
+}
+
+.card img {
+    min-width: 500px;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.img-placeholder {
+    background-color: #c6c6c6;
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-placeholder i {
+    font-size: 60px;
+    color: #343434;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 26px 26px 26px;
+}
+
+.span-categoria {
+    padding: 3px 6px;
+    border-radius: 10px;
+    color: #343434;
+    background: #c6c6c6;
+}
+
+.desc {
+    margin-top: 30px;
+    border: 1px solid #343434;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+}
+
+.span-desc {
+    position: absolute;
+    margin: -26px 0px 0px 2px;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0px 6px;
+}
+
+.btn-modal-deletar {
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 6px;
+    background-color: #ff3b3b;
+    color: #fff;
+    margin-top: 50px;
+}
+
+.btn-modal-deletar:hover {
+    background-color: #eb1c1c;
+}
+
+.btn-cancel-delete {
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 6px;
+    background-color: #c6c6c6;
+    color: #343434;
+    margin-top: 50px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+dialog {
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, .3);
+    margin: 300px 500px;
+}

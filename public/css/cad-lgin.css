@@ -1,0 +1,169 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #d6d6d6;
+}
+
+/* Div principal */
+
+#div-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#form-div {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+/* Título */
+
+#form-titulo {
+    font-size: 1.6rem;
+    margin-top: 0px;
+}
+
+/* Campos (input) */
+
+.form-input {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom:30px;
+    text-align: center;
+}
+
+.form-input input {
+    outline: none;
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #999;
+    background: transparent;
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+
+.form-input .span-label {
+    position: absolute;
+    top: 50%;
+    left: 32px;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.5s;
+    font-size: 0.9rem;
+    user-select: none;
+    z-index: -1;
+}
+
+.icon {
+    position: absolute;
+    left: 12px;
+    top: 0;
+    font-size: 0.9rem;
+    color: #999;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+.span-label {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+}
+
+.form-input span {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.5s;
+}
+*/
+
+.form-input input:valid ~ .span-label,
+.form-input input:focus ~ .span-label {
+    color: #f2f2f2;
+    transform: translateX(-18px) translateY(-32px);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background: #68CE2C;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    box-shadow: 0 0 4px #68CE2C;
+    z-index: 0;
+}
+
+.form-input input:valid,
+.form-input input:focus {
+    border: 1px solid #68CE2C;
+    box-shadow: 0 0 4px #68CE2C;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+/* Botão Cadastrar */
+
+button {
+    padding: 10px 20px;
+    width: 240px;
+    background-color: #68CE2C;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+button:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+/* Links para Login, Cadastro e Esqueceu senha */
+
+.link {
+    margin-top: 10px;
+}
+
+.link span {
+    font-size: 14px;
+}
+
+.link a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.esq-senha {
+    text-align: right;
+    margin: -28px 2px 26px 0;
+}

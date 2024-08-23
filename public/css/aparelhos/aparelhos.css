@@ -1,0 +1,333 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Filtrar categoria */
+#cat-bar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 60px 160px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    height: 12rem;  
+}
+
+.cat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+}
+
+.cat-span {
+    color: #343434;
+}
+
+.btn-cat {
+    margin: 8px;
+    background: #c6c6c6;
+    border-radius: 16px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.btn-cat:hover {
+    border-radius: 50%;
+    transform: scale(1.15);
+    background: rgba(104, 206, 44, 0.35);
+}
+
+.icon-cat {
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+#link-add-aparelho {
+    display: flex;
+    justify-content: center;
+    margin: 3% 0 -2% 0;
+}
+
+#add-aparelho {
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+    background-color: #68ce2c;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+}
+
+#add-aparelho:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+
+
+/* ----- CADASTRO DE APARELHOS ----- */
+
+#titulo-novo-aparelho {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    font-size: 28px;
+    font-weight: 500;
+    color: #343434;
+}
+
+#form-div {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 60px 160px;
+    padding: 40px 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.form-input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom:30px;
+}
+
+.form-input input {
+    outline: none;
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #999;
+    background: transparent;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.form-input #cat:focus, input:focus {
+    border: 2px solid #68ce2c;
+    box-shadow: 0 0 4px #fff;;
+}
+
+.span-label {
+    color: #343434;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+#placehoder-select {
+    color: #c6c6c6;
+}
+
+#cat {
+    content: '\25BC';
+    outline: none;
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #999;
+    border-radius: 15px;
+    background: transparent;
+}
+
+option {
+    background: #d6d6d6;
+}
+
+option:focus {
+    background-color: #68ce2c;
+}
+
+textarea {
+    resize: none;
+    font-size: 14px;
+    padding: 6px 10px;
+    border: 2px solid #999;
+    border-radius: 15px;
+    background: transparent;
+}
+
+textarea:focus {
+    outline-color: #68ce2c;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.lbl-img {
+    cursor: pointer;
+    padding: 10px;
+    height: 140px;
+    color: #343434;
+    border: 2px dashed #999;
+    border-radius: 15px;
+    background: transparent;
+    
+}
+
+#img {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-selecionada {
+    border: 2px solid #68ce2c;
+    box-shadow: 0 0 4px #fff;;
+}
+
+.btn-add-aparelho  {
+    margin-top: 40px;
+    padding: 10px 20px;
+    width: 240px;
+    background-color: #68CE2C;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.btn-add-aparelho:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+
+
+/* ----- LISTAR APARELHOS ----- */
+#lista-aparelhos {
+    position: relative;
+    display: grid;
+    row-gap: 60px;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    margin: 60px 160px;
+    padding: 40px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.card-aparelho {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .25);
+    cursor: pointer;
+}
+
+.imagem {
+    max-width: 400px;
+    min-width: 100px;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.img-placeholder {
+    color: #343434;
+    background-color: #c6c6c6;
+    min-width: 300px;
+    height: 177.5px;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info {
+    padding: 10px 16px;
+    margin-top: -12px;
+}
+
+.main-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    display: flex;
+    font-size: 14px;
+    margin-top: 12px;
+    justify-content: end;
+}
+
+.status span {
+    padding: 3px 6px;
+    border-radius: 10px;
+    color: #343434;
+    background: #c6c6c6;
+}
+
+/* Menu edit/delete dos cards */
+.btn-edit-delete {
+    position: relative;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, .1);
+    color: #343434;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.menu-edit-delete {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 8px 0;
+    min-width: 120px;
+    z-index: 1;
+    font-size: 16px;
+}
+
+.menu-edit-delete a {
+    display: block;
+    text-decoration: none;
+    padding: 8px 16px;
+    color: #343434;
+}
+
+.menu-edit-delete button {
+    padding: 8px 16px;
+    font-size: 16px;
+    width: 100%;
+    text-align: start;
+    border: none;
+    color: #343434;
+    background-color: #fff;
+}
+
+.menu-edit-delete a:hover, button:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}

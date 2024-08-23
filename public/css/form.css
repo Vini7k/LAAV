@@ -1,0 +1,112 @@
+.form-stepper {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#form-steps {
+    margin: 50px;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.label {
+    padding: 12px;
+    text-align: center;
+}
+
+.progress-line {
+    position: relative;
+    height: 2px;
+    width: 330px;
+    top: 2.3vh;
+    border-radius: 1px;
+    background: #343434;
+}
+
+.progress-line-completed {
+    background: #68ce2c;
+}
+
+.step-elem {
+    margin-top: 2rem;
+}
+
+.form-step {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 3rem;
+}
+
+.div-none {
+    display: none;
+}
+
+.form-stepper .span-circle {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.form-stepper .form-stepper-unfinishedcle {
+    background-color: #d9d9d9;
+    border: solid 2px #343434;
+    transition: 0.3s;
+}
+
+.form-stepper .form-stepper-active {
+    background-color: #343434;
+    color: #d9d9d9;
+    transition: 0.3s;
+}
+
+.form-stepper .form-stepper-completed  {
+    background-color: #68ce2c;
+    border-color: #68ce2c;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+.button {
+    width: 160px;
+    padding: 8px 20px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.btn-next, .submit-btn {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #68ce2c;
+}
+
+.btn-next:hover, .submit-btn:hover {
+    background-color: #58af26;
+    box-shadow: 0 0 8px #68CE2C;
+}
+
+.btn-prev {
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+    color: #d9d9d9;
+    background-color: #343434;
+}
+
+.btn-prev:hover {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 8px #2c2c2c;
+}
+
+/* horário */

@@ -1,0 +1,132 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D6D6D6;
+}
+
+.logo {
+    font-family: 'Roboto Slab', serif;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 2.6rem;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: -4.4px 4.1px 0px #0A4800;
+    text-decoration: none;
+    /*padding-left: 10%;*/
+}
+
+header {
+    background-color: #68CE2C;
+    box-shadow: 0 0 10px #0A4800;
+}
+
+li {
+    list-style: none;
+    font-family: 'Poppins', serif;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-link {
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #e9e9e9;
+}
+
+.hamburguer {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 29px;
+    height: 3px;
+    border-radius: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out ;
+}
+
+@media (max-width:768px) {
+    .hamburguer {
+        display: block;
+    }
+
+    .hamburguer.active .bar:nth-child(1){
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburguer.active .bar:nth-child(2){
+        opacity: 0;
+    }
+
+    .hamburguer.active .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-list {
+        position: fixed;
+        height: 80%;
+        left: 100%;
+        top: 70px;
+        gap: 0px;
+        border-radius: 0 0 8px 8px;
+        background-color: #4C9A2A;
+        text-align: center;
+        flex-direction: column;
+        width: 50%;
+        transition: 0.8s;
+        box-shadow: 0 0 6px #0A4800;
+        padding-top: 10px;
+        z-index: -1;
+    }
+
+    .nav-list.active {
+        left: 50%;
+        height: 80%;
+    }
+
+    .nav-item {
+        padding: 26px;
+    }
+
+    #line {
+        width: 94%;
+        height: 1px;
+        background: #fff;
+    }
+}
+
+/*
+#1E5631
+#4C9A2A
+*/
