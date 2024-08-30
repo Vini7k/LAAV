@@ -32,8 +32,8 @@
     </header>
     <div class='caixa'>
         <div class='div-principal'>
-            <!--<div id='calendar'></div>-->
             <h1 style="position:absolute;top:20%; left: 50%; transform: translate(-50%, -50%);">AGENDAMENTOS</h1>
+            <!--<div id='calendar'></div>-->
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size:1.5em;">
               <x-paginateste></x-paginateste>
             </div>

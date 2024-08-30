@@ -69,18 +69,17 @@
                             <button class="button btn-navigate-form-step btn-next" type="button"
                                 step_number="2">Avançar</button>
                         </div>
-                        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                     @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                     @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                     </section>
-
                     <!-- Step 2 -->
                     <section id="step-2" class="form-step div-none">
                         <h2 class="font-normal">Selecione o horário da devolução</h2>
@@ -103,6 +102,7 @@
                                 @foreach($aparelhos as $aparelho)
                                 <option value="{{ $aparelho->id }}">{{ $aparelho->marca . " " . $aparelho->modelo }}
                                 </option>
+                                <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
                                 @endforeach
                             </select>
                         </div>

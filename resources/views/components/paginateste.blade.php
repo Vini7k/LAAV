@@ -30,9 +30,26 @@ if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
 }
 
-$stmt = $mysqli->prepare("SELECT users.name, reservas.data_emprestimo, reservas.devolucao_prevista, reservas.horario_devolucao_emprestimo FROM reservas INNER JOIN users ON reservas.user_id = users.id");
+$stmt = $mysqli->prepare("
+    SELECT 
+        users.name, 
+        reservas.data_emprestimo, 
+        reservas.devolucao_prevista, 
+        reservas.horario_devolucao_emprestimo,
+        GROUP_CONCAT(aparelhos.id SEPARATOR ', ') AS aparelho_ids
+    FROM 
+        reservas 
+    INNER JOIN 
+        users ON reservas.user_id = users.id
+    INNER JOIN 
+        aparelho_reserva ON reservas.id = aparelho_reserva.reserva_id
+    INNER JOIN 
+        aparelhos ON aparelho_reserva.aparelho_id = aparelhos.id
+    GROUP BY 
+        reservas.id, users.name, reservas.data_emprestimo, reservas.devolucao_prevista, reservas.horario_devolucao_emprestimo
+");
 $stmt->execute();
-$stmt->bind_result($userName, $data_emprestimo,$devolucao_prevista,$horario_devolucao_emprestimo);
+$stmt->bind_result($userName, $data_emprestimo, $devolucao_prevista, $horario_devolucao_emprestimo, $aparelho_ids);
 
 echo "<table> 
         <style>
@@ -47,8 +64,8 @@ echo "<table>
                 <th>Nome do Usuário</th>
                 <th>Data de Empréstimo</th>
                 <th>Data de Devolução</th>
-                <th>Horario de Devolução</th>
-                <th>Aparelho</th>
+                <th>Horário de Devolução</th>
+                <th>Aparelhos</th>
         </tr>";
 
 while ($stmt->fetch()) {
@@ -57,11 +74,12 @@ while ($stmt->fetch()) {
     echo "<td>" . $data_emprestimo . "</td>";
     echo "<td>" . $devolucao_prevista . "</td>";
     echo "<td>" . $horario_devolucao_emprestimo . "</td>";
-    
+    echo "<td>" . $aparelho_ids . "</td>";
     echo "</tr>";
 }
 
 echo "</table>";
+
 
 $stmt->close();
 ?>
