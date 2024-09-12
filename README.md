@@ -1,7 +1,7 @@
 
 # Bem Vindo ao LAAV
 
-<img src="https://raw.githubusercontent.com/MatheusbsPereira/iformula/main/public/images/iformula-logo.png" alt="iformula logo"></img>
+<img src="https://raw.githubusercontent.com//Vini7k/Laav/blob/main/public/imagens/Logo.PNG" alt="iformula logo"></img>
 ## Requesitos :
 
 ### PHP ^8.1 
