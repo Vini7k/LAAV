@@ -1,12 +1,4 @@
-<html>
-<!--Cria botão e local de escrita -->
 
-        <form method = "post" >
-                Filtrar
-                <input type="text" name="filtro">
-                <input type="submit" value="OK">
-        </form>
-</html>
 <?php
 
 //inicializa o filtro
