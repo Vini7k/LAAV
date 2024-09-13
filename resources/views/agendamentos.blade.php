@@ -8,7 +8,7 @@
     <title>LAAV</title>
     <link rel="stylesheet" href="{{ asset('css/nav-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendario-agend.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/agendamentos.css') }}">
     <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
     
     <!--<script src="{{ asset('js/fullcalendar-6.1.8/dist/index.global.min.js') }}"></script> -->
@@ -25,18 +25,7 @@
       });
 
     </script>
-    <style>
-      .form-step {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-        padding: 3rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size:1.5em;"
-      } 
-    </style>
+   
 </head>
 <body>
     <header>
@@ -48,7 +37,7 @@
             <!--<div id='calendar'></div>-->
             <div>
               <div class=form-step>
-                <x-paginateste></x-paginateste>
+                <x-tabela></x-tabela>
               </div>
             </div>
         </div>

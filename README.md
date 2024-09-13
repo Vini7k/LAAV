@@ -1,7 +1,7 @@
 
 # Bem Vindo ao LAAV
 
-<img src="https://raw.githubusercontent.com/MatheusbsPereira/iformula/main/public/images/iformula-logo.png" alt="iformula logo"></img>
+<img src="public/imagens/Logo.PNG" alt="Laav logo"></img>
 
 
 ## Requesitos :
