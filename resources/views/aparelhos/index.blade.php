@@ -69,7 +69,7 @@
                             </div>
                         @else
                             <div>
-                                <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
+                            <img src="{{ asset(path: 'storage/' . $aparelho->image) }}" class="imagem">
                             </div>
                         @endif
                     </div>
