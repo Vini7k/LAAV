@@ -23,7 +23,7 @@
                 </div>
             @else
                 <div>
-                    <img src="{{ asset('storage/' . $aparelho->image) }}" class="imagem">                
+                <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
                 </div>
             @endif
             <div class="info">
