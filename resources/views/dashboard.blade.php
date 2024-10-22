@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LAAV</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/nav-bar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pag-inicial.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css')  }}">
@@ -16,7 +15,7 @@
 
 <body>
     <header>
-        <x-nav-bar />
+        <x-nav-bar/>
     </header>
     <main>
         <div class="calendar-container">
