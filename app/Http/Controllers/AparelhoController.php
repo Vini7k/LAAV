@@ -34,11 +34,11 @@ class AparelhoController extends Controller
         $data = $request->all();
         $data['status'] = 'Disponível';
 
-        if ($request->file('image'))
-        {
+        if ($request->file('image')) {
             $file = $request->file('image');
-            $file->store('public');
-            $data['image'] = $file->hashName();
+            $fileName = $file->hashName();
+            $file->move(public_path('storage'), $fileName);
+            $data['image'] = $fileName;
         }
 
         $aparelhos->create($data);
