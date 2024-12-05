@@ -6,16 +6,9 @@
 
 ## Requesitos :
 
-### PHP ^8.1 
+### XAMPP 8.2.12 
 
-Disponivel em <a href="https://www.php.net/downloads.php">https://www.php.net/downloads.php</a>
-
-
-#### Extensões
-php-curl <br>
-php-mbstring <br>
-php-pdo_mysql <br>
-php-gd
+Disponivel em <a href="https://www.apachefriends.org/download.html">https://www.apachefriends.org/download.html</a>
 
 
 ### Composer 2.6.3
@@ -23,14 +16,9 @@ php-gd
 Disponivel em <a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a>
 
 
-### Mysql 8.0.34
+### Node.js 22.12.0
 
-Disponivel em <a href="https://dev.mysql.com/downloads/installer/">https://dev.mysql.com/downloads/installer/</a>
-
-
-### Node.js 18.18.0
-
-Disponivel em <a href="https://nodejs.org/en">https://nodejs.org/en</a>
+Disponivel em <a href="https://nodejs.org/pt">https://nodejs.org/pt</a>
 
 
 ## Guia de instalação
@@ -56,6 +44,7 @@ php artisan migrate
 
 ```
 ### Configurando o front-end da aplicação
+s
 #### Instalando os pacotes nodejs
 ```shell
 npm install
