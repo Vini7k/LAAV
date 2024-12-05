@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>LAAV</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/nav-bar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aparelhos/aparelhos-show.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,44 +15,49 @@
         <x-nav-bar/>
     </header>
     <main>
-        <div class="card">
-            @if($aparelho->image == null)
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-image"></i>
-                </div>
-            @else
-                <div>
-                <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
-                </div>
-            @endif
-            <div class="info">
-                <h2>{{ $aparelho->marca . " " . $aparelho->modelo }}</h2>
-
-                <p style="margin-top: 6px">Categoria:</p>
-                <span class="span-categoria">{{ $aparelho->categoria }}</span>
-
-                @if($aparelho->desc != null)
-                    <div class="desc">
-                        <span class="span-desc">Descrição</span>
-                        <p>{{ $aparelho->desc }}</p>
-                    </div>
-                @endif
-
-                @if($aparelho->obs != null)
-                    <div class="desc">
-                        <span class="span-desc">Observações</span>
-                        <p>{{ $aparelho->obs }}</p>
-                    </div>
-                @endif
-
-                @can('admin')
-                    <div style="display: flex; alia">
-                        <button class="btn-modal-deletar">Deletar</button>
-                    </div>
-                @endcan
-                
-            </div>
+    <div class="card">
+    @if($aparelho->image == null)
+        <div class="img-placeholder">
+            <i class="fa-solid fa-image"></i>
         </div>
+    @else
+        <div>
+            <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
+        </div>
+    @endif
+    <div class="info">
+        <h2>{{ $aparelho->marca . " " . $aparelho->modelo }}</h2>
+
+        <p style="margin-top: 6px">Categoria:</p>
+        <span class="span-categoria">{{ $aparelho->categoria }}</span>
+
+        @if($aparelho->desc != null)
+            <div class="desc">
+                <span class="span-desc">Descrição</span>
+                <p>{{ $aparelho->desc }}</p>
+            </div>
+        @endif
+
+        @if($aparelho->obs != null)
+            <div class="desc">
+                <span class="span-desc">Observações</span>
+                <p>{{ $aparelho->obs }}</p>
+            </div>
+        @endif
+        <table>
+        <tr>
+            <td class="td-btn-deletar">&nbsp;
+                @can('admin')
+                    <button class="btn-modal-deletar">Deletar</button>
+                @endcan
+            </td>
+            <td>
+                <button onclick="window.location.href='{{ route('aparelhos.index') }}'" class="btn-voltar">Voltar</button>
+            </td>
+        </tr>
+        </table>
+    </div>
+</div>
 
         @if($aparelho != null)
             <div>
@@ -71,11 +75,8 @@
                 </dialog>
             </div>
         @endif
-        
 
         <script src="{{ asset('js/aparelhos/modal-delete.js') }}"></script>
-        
     </main>
-    
 </body>
 </html>
