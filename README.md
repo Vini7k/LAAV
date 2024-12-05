@@ -30,7 +30,7 @@ composer install
 ```
 ### Gerando o env do projeto
 ```shell
-cp .env.example .env
+copy .env.example .env
 
 ```
 ### Configurando a chave da aplicação
@@ -44,7 +44,7 @@ php artisan migrate
 
 ```
 ### Configurando o front-end da aplicação
-s
+s 
 #### Instalando os pacotes nodejs
 ```shell
 npm install
