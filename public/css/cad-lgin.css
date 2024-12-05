@@ -109,17 +109,17 @@ body {
     transform: translateX(-18px) translateY(-32px);
     font-size: 0.75em;
     padding: 0 10px;
-    background: #68CE2C;
+    background: #06864a;
     letter-spacing: 0.1em;
     font-weight: 600;
-    box-shadow: 0 0 4px #68CE2C;
+    box-shadow: 0 0 4px #06864a;
     z-index: 0;
 }
 
 .form-input input:valid,
 .form-input input:focus {
-    border: 1px solid #68CE2C;
-    box-shadow: 0 0 4px #68CE2C;
+    border: 1px solid #06864a;
+    box-shadow: 0 0 4px #06864a;
 }
 
 input:-webkit-autofill {
@@ -131,7 +131,7 @@ input:-webkit-autofill {
 button {
     padding: 10px 20px;
     width: 240px;
-    background-color: #68CE2C;
+    background-color: #06864a;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -140,8 +140,8 @@ button {
 }
 
 button:hover {
-    background-color: #58af26;
-    box-shadow: 0 0 8px #68CE2C;
+    background-color: #06864a;
+    box-shadow: 0 0 8px #06864a;
 }
 
 /* Links para Login, Cadastro e Esqueceu senha */

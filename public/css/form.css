@@ -31,7 +31,7 @@ li {
 }
 
 .progress-line-completed {
-    background: #68ce2c;
+    background: #06864a;
 }
 
 .step-elem {
@@ -71,8 +71,8 @@ li {
 }
 
 .form-stepper .form-stepper-completed  {
-    background-color: #68ce2c;
-    border-color: #68ce2c;
+    background-color: #06864a;
+    border-color: #06864a;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
     color: #fff;
 }
@@ -88,12 +88,12 @@ li {
     border: none;
     cursor: pointer;
     color: #fff;
-    background-color: #68ce2c;
+    background-color: #06864a;
 }
 
 .btn-next:hover, .submit-btn:hover {
-    background-color: #58af26;
-    box-shadow: 0 0 8px #68CE2C;
+    background-color: #06864a;
+    box-shadow: 0 0 8px #06864a;
 }
 
 .btn-prev {

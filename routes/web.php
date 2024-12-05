@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     /* RESERVA */
     Route::get('/dashboard', [ReservaController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [ReservaController::class, 'store'])->name('reserva.store');
+    
 
     /* APARELHOS */
     Route::match(['get', 'post'], '/aparelhos', AparelhoController::class)->name('aparelhos.index');

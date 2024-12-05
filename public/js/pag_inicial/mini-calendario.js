@@ -13,34 +13,40 @@ document.addEventListener("DOMContentLoaded", function() {
         const daysOfWeek = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const firstDay = new Date(year, month, 1).getDay();
-        const lastDayOfprev = new Date(year, month, 0).getDate();
+        const lastDayOfPrev = new Date(year, month, 0).getDate();
 
-        // Atualiza o título do mês
         monthTitle.textContent = `${months[month]} ${year}`;
         
         let html = `<table><tr>`;
-
         for (let i = 0; i < daysOfWeek.length; i++) {
             html += `<th>${daysOfWeek[i]}</th>`;
         }
-
         html += "</tr><tr>";
 
-        // Preenche os dias do mês anterior
-        for (let day = lastDayOfprev - firstDay + 1; day <= lastDayOfprev; day++) {
+        // Adicionar dias do mês anterior se necessário
+        for (let day = lastDayOfPrev - firstDay + 1; day <= lastDayOfPrev; day++) {
             html += `<td class="other-month">${day}</td>`;
         }
 
+        const today = new Date();
+        const endOfNextWeek = new Date(today);
+        endOfNextWeek.setDate(today.getDate() + (7 - today.getDay()) + 7); // Calcula o próximo domingo (fim da próxima semana)
+
+        // Criar os dias do mês
         for (let day = 1; day <= daysInMonth; day++) {
-            // Adiciona a classe "dia-atual" apenas ao dia atual no mês atual
-            if (
-                year === today.getFullYear() &&
-                month === today.getMonth() &&
-                day === today.getDate()
-            ) {
-                html += `<td class="dia-atual">${day}</td>`;
+            const clickedDate = new Date(year, month, day);
+
+            // Permitir agendamento até o final da próxima semana (14 dias no total)
+            if (clickedDate.getTime() >= today.getTime() && clickedDate.getTime() <= endOfNextWeek.getTime()) {
+                const isSunday = clickedDate.getDay() === 0; // 0 representa domingo
+
+                if (!isSunday) {
+                    html += `<td data-day="${day}" data-date="${clickedDate.toISOString()}">${day}</td>`;
+                } else {
+                    html += `<td class="disabled" data-day="${day}" data-date="${clickedDate.toISOString()}">${day}</td>`;
+                }
             } else {
-                html += `<td>${day}</td>`;
+                html += `<td class="disabled" data-day="${day}" data-date="${clickedDate.toISOString()}">${day}</td>`;
             }
 
             if ((firstDay + day) % 7 === 0) {
@@ -48,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // Preenche os dias do próximo mês
+        // Adicionar os dias restantes do próximo mês, se necessário
         const lastDay = new Date(year, month + 1, 0).getDay();
         const remainingDays = 6 - lastDay;
         for (let day = 1; day <= remainingDays; day++) {
@@ -69,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
         createCalendar(currentYear, currentMonth);
     }
 
-    function shownext() {
+    function showNextMonth() {
         if (currentMonth === 11) {
             currentYear++;
             currentMonth = 0;
@@ -79,60 +85,41 @@ document.addEventListener("DOMContentLoaded", function() {
         createCalendar(currentYear, currentMonth);
     }
 
-    function getMesAbrev(numMes) {
-        const mesesAbrev = [
-            "Jan",
-            "Fev",
-            "Mar",
-            "Abr",
-            "Mai",
-            "Jun",
-            "Jul",
-            "Ago",
-            "Set",
-            "Out",
-            "Nov",
-            "Dez"
-        ];
-
-        if (numMes >= 0 && numMes <= 11) {
-            return mesesAbrev[numMes];
-        }
-    }
+    Date.prototype.getWeek = function() {
+        const startDate = new Date(this.getFullYear(), 0, 1);
+        const days = Math.floor((this - startDate) / (24 * 60 * 60 * 1000));
+        return Math.ceil((days + 1) / 7);
+    };
 
     const today = new Date();
 
-    // Função marcar data
     function showDate(event) {
         const clickedDay = event.target.closest("td");
         if (clickedDay) {
+            if (!clickedDay.classList.contains("other-month") && !clickedDay.classList.contains("disabled")) {
+                const clickedDate = new Date(clickedDay.dataset.date);
 
-            // Verifica se o elemento clicado é uma célula da tabela
-            if (!clickedDay.classList.contains("other-month")) {
-                const clickedDate = new Date(currentYear, currentMonth, parseInt(event.target.textContent, 10));
+                const endOfNextWeek = new Date(today);
+                endOfNextWeek.setDate(today.getDate() + (7 - today.getDay()) + 7); // Calcula o próximo domingo (fim da próxima semana)
 
-                // Compara a data clicada com a data atual
-                if (clickedDate.getTime() > today.getTime())  {
-                     dataClicada = `${currentYear}-${currentMonth + 1}-${clickedDate.getDate()}`;
+                // Verificar se a data está dentro do intervalo permitido (hoje + próxima semana inteira)
+                if (clickedDate.getTime() >= today.getTime() && clickedDate.getTime() <= endOfNextWeek.getTime()) {
+                    const dataClicada = `${currentYear}-${currentMonth + 1}-${clickedDate.getDate()}`;
 
                     let dia = document.getElementById("data-reserva");
                     let dataClicadaObj = typeof dataClicada === 'string' ? new Date(dataClicada) : dataClicada;
 
-                    // Obtém o ano, mês e dia da dataClicadaObj
                     let ano = dataClicadaObj.getFullYear();
-                    let mes = String(dataClicadaObj.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda se necessário
-                    let diaDoMes = String(dataClicadaObj.getDate()).padStart(2, '0'); // Adiciona zero à esquerda se necessário
+                    let mes = String(dataClicadaObj.getMonth() + 1).padStart(2, '0'); 
+                    let diaDoMes = String(dataClicadaObj.getDate()).padStart(2, '0');
                     
-                    // Concatena ano, mês e dia em uma string no formato "yyyy-mm-dd"
                     let dataFormatada = `${ano}-${mes}-${diaDoMes}`;
                     
-                    // Define o valor do elemento dia com a data formatada
                     dia.value = dataFormatada;
-                    // Remove a classe "highlight" de todos os dias
+
                     const allDays = document.querySelectorAll("td");
                     allDays.forEach(day => day.classList.remove("highlight"));
 
-                    // Adiciona a classe "highlight" ao dia clicado
                     clickedDay.classList.add("highlight");
 
                     let spanDate = document.getElementById("data-agend");
@@ -142,12 +129,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Adiciona um event listener aos elementos da tabela
     calendar.addEventListener("click", showDate);
 
     prevButton.addEventListener("click", showPreviousMonth);
-    nextButton.addEventListener("click", shownext);
+    nextButton.addEventListener("click", showNextMonth);
 
     createCalendar(today.getFullYear(), today.getMonth());
 });
-

@@ -1,16 +1,4 @@
-
 <?php
-
-//inicializa o filtro
-$filtrosql = "";
-
-//verifica se clicou em filtrar
-if( $_POST !=NULL){
-    //obtem filtro digitado por usuario 
-    $filtro = $_POST["filtro"];
-    //Cria filtro em SQL
-    $filtrosql = "WHERE id = '$filtro' OR nome LIKE '%filtro%' OR matricula LIKE '%filtro%' OR data LIKE '%filtro%' ";
-}
 
 $user = "root"; 
 $password = ""; 
@@ -41,29 +29,54 @@ $stmt = $mysqli->prepare("
         reservas.id, users.name, reservas.data_emprestimo, reservas.devolucao_prevista, reservas.horario_devolucao_emprestimo
 ");
 
-// Executar a consulta
 $stmt->execute();
 
-// Vincular os resultados às variáveis
 $stmt->bind_result($userName, $data_emprestimo, $devolucao_prevista, $horario_devolucao_emprestimo, $aparelho_modelos);
 
-// Criar a tabela HTML
 echo "<style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para as células da tabela */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+th {
+    background-color: #06864a;
+    color: #fff;
+    font-weight: bold;
+}
+
+td {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-container {
+    padding: 50px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
     </style>";
 
 echo "<table>
@@ -75,21 +88,24 @@ echo "<table>
             <th>Aparelhos</th>
         </tr>";
 
-// Iterar sobre os resultados e exibir na tabela
 while ($stmt->fetch()) {
+    // Formatar o horário de devolução para mostrar apenas a hora e minuto
+    $horario_formatado = date("H:i", strtotime($horario_devolucao_emprestimo));
+    
+    // Formatar as datas para o formato dd/mm/aaaa
+    $data_emprestimo_formatada = date("d/m/Y", strtotime($data_emprestimo));
+    $devolucao_prevista_formatada = date("d/m/Y", strtotime($devolucao_prevista));
+
     echo "<tr>";
     echo "<td>" . htmlspecialchars($userName, ENT_QUOTES, 'UTF-8') . "</td>";
-    echo "<td>" . htmlspecialchars($data_emprestimo, ENT_QUOTES, 'UTF-8') . "</td>";
-    echo "<td>" . htmlspecialchars($devolucao_prevista, ENT_QUOTES, 'UTF-8') . "</td>";
-    echo "<td>" . htmlspecialchars($horario_devolucao_emprestimo, ENT_QUOTES, 'UTF-8') . "</td>";
+    echo "<td>" . htmlspecialchars($data_emprestimo_formatada, ENT_QUOTES, 'UTF-8') . "</td>"; // Exibe a data de empréstimo formatada
+    echo "<td>" . htmlspecialchars($devolucao_prevista_formatada, ENT_QUOTES, 'UTF-8') . "</td>"; // Exibe a data de devolução formatada
+    echo "<td>" . htmlspecialchars($horario_formatado, ENT_QUOTES, 'UTF-8') . "</td>"; // Exibe a hora formatada
     echo "<td>" . htmlspecialchars($aparelho_modelos, ENT_QUOTES, 'UTF-8') . "</td>";
     echo "</tr>";
 }
 
-// Fechar a tabela HTML
 echo "</table>";
 
-// Fechar a declaração
 $stmt->close();
 ?>
-

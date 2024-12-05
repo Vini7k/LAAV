@@ -36,6 +36,7 @@ class AparelhoController extends Controller
 
         if ($request->file('image')) {
             $file = $request->file('image');
+            // Garante que a pasta public/storage esteja acessível
             $fileName = $file->hashName();
             $file->move(public_path('storage'), $fileName);
             $data['image'] = $fileName;

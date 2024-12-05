@@ -22,14 +22,14 @@ class ReservaController extends Controller
     }
     public function store(Request $request)
     {
-        //dd($request);
+        
         $request->validate([
             'horario_emprestimo' => 'required|date_format:H:i',
             'horario_devolucao_emprestimo' => 'required|date_format:H:i|after:horario_emprestimo',
             'aparelho_checkbox' => 'required|array',
             'data_emprestimo' => 'required|date',
         ]);
-        //dd($request->validated());
+        
         $user = Auth::user();
 
         $data = [
@@ -41,7 +41,6 @@ class ReservaController extends Controller
         ];
 
         $novaReserva = Reserva::create($data);
-        //dd($novaReserva);
 
         $novaReserva->aparelhos()->attach($request->input('aparelho_checkbox'));
 

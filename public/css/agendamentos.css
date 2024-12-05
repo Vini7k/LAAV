@@ -1,10 +1,21 @@
 .form-step {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    padding: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  width: 100%; /* Aumenta a largura da caixa para 80% do contêiner pai */
+  height: auto; /* Ajusta a altura automaticamente */
+  max-width: 1600px; /* Limita a largura máxima em 1000px */
+}
+  h1 {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size:1.5em;
-  } 
+    z-index: 2;
+    font-family: 'Poppins',sans-serif;
+}

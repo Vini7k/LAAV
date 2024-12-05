@@ -64,7 +64,7 @@
     font-size: 18px;
     margin: 0;
     color: #fff;
-    background-color: #68ce2c;
+    background-color: #06864a;
     text-decoration: none;
     padding: 12px;
     border-radius: 15px;
@@ -72,8 +72,8 @@
 }
 
 #add-aparelho:hover {
-    background-color: #58af26;
-    box-shadow: 0 0 8px #68CE2C;
+    background-color: #06864a;
+    box-shadow: 0 0 8px #06864a;
 }
 
 
@@ -197,7 +197,7 @@ input[type="file"] {
 }
 
 .img-selecionada {
-    border: 2px solid #68ce2c;
+    border: 2px solid #06864a;
     box-shadow: 0 0 4px #fff;;
 }
 
@@ -205,7 +205,7 @@ input[type="file"] {
     margin-top: 40px;
     padding: 10px 20px;
     width: 240px;
-    background-color: #68CE2C;
+    background-color: #06864a;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -214,8 +214,8 @@ input[type="file"] {
 }
 
 .btn-add-aparelho:hover {
-    background-color: #58af26;
-    box-shadow: 0 0 8px #68CE2C;
+    background-color: #06864a;
+    box-shadow: 0 0 8px #06864a;
 }
 
 
@@ -241,19 +241,18 @@ input[type="file"] {
 }
 
 .imagem {
-    max-width: 400px;
-    min-width: 100px;
-    width: 300px;
-    height: auto;
-    padding: 10px;
-    border-radius: 20px;
+    width: 100%; /* A largura será de 100% do container */
+    height: 250px; /* Altura fixa de 200px para todas as imagens */
+    object-fit: cover; /* Faz com que a imagem cubra o espaço sem distorcer */
+    border-radius: 20px; /* Borda arredondada */
+    
 }
 
 .img-placeholder {
     color: #343434;
     background-color: #c6c6c6;
-    min-width: 300px;
-    height: 177.5px;
+    width: 100%; /* Largura fixa para o placeholder */
+    height: 250px; /* Altura fixa para o placeholder */
     margin: 10px;
     border-radius: 20px;
     display: flex;

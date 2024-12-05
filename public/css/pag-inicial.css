@@ -9,6 +9,16 @@ main {
     display: flex;
 }
 
+td.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+td.highlight {
+    background-color: #06864a;
+    color: white;
+}
+
 h3 {
     text-align: center;
     font-weight: 600;
@@ -68,7 +78,7 @@ td {
 }
 
 .highlight {
-    background-color: #68ce2c;
+    background-color: #06864a;
     color: #fff;
 }
 
@@ -164,16 +174,22 @@ h2 {
     box-shadow: 0 0 8px #68CE2C;
 }
 
-/* FORM */
 .form-stepper {
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: space-between;
+    
 }
 
 #form-steps {
     margin: 50px;
+    
+}
+
+.steps-css {
+    background-color: white;
+    
 }
 
 li {
