@@ -44,7 +44,7 @@ php artisan migrate
 
 ```
 ### Configurando o front-end da aplicação
-s 
+
 #### Instalando os pacotes nodejs
 ```shell
 npm install
