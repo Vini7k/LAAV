@@ -22,27 +22,21 @@
     <div class=form-step>
         
         <?php
-        // Configuração da conexão com o banco de dados
         $mysqli = new mysqli('localhost', 'root', '', 'laravel');
 
-        // Verifica se houve erro na conexão
         if ($mysqli->connect_error) {
             die('Erro na conexão: ' . $mysqli->connect_error);
         }
 
-        // Consulta SQL para obter as reservas e os aparelhos associados
         $stmt = $mysqli->prepare("SELECT aparelhos.modelo, aparelhos.marca, reservas.data_emprestimo
             FROM reservas
             LEFT JOIN aparelho_reserva ON reservas.id = aparelho_reserva.reserva_id
             LEFT JOIN aparelhos ON aparelho_reserva.aparelho_id = aparelhos.id");
 
-        // Executa a consulta
         $stmt->execute();
 
-        // Vincula os resultados às variáveis PHP
         $stmt->bind_result($modelo, $marca, $data_emprestimo);
 
-        // Título para a lista de reservas e aparelhos
         echo "<h2>Lista de todas as reservas e os aparelhos associados</h2>";
         echo "<table>
                 <tr>
@@ -51,12 +45,9 @@
                     <th>Data de Empréstimo</th>
                 </tr>";
 
-        // Itera pelos resultados e exibe na tabela
         while ($stmt->fetch()) {
-            // Formatar a data de empréstimo para o formato dd/mm/aaaa
             $data_emprestimo_formatada = date("d/m/Y", strtotime($data_emprestimo));
 
-            // Exibe cada linha na tabela
             echo "<tr>";
             echo "<td>" . htmlspecialchars($modelo, ENT_QUOTES, 'UTF-8') . "</td>";
             echo "<td>" . htmlspecialchars($marca, ENT_QUOTES, 'UTF-8') . "</td>";
@@ -66,17 +57,14 @@
 
         echo "</table>";
 
-        // Fecha o statement
         $stmt->close();
 
-        // Nova consulta para contar o total de reservas
         $stmt_total_reservas = $mysqli->prepare("SELECT COUNT(*) AS total_reservas FROM reservas");
 
         $stmt_total_reservas->execute();
 
         $stmt_total_reservas->bind_result($total_reservas);
 
-        // Título para a lista de quantidade de reservas
         echo "<h2>Lista da quantidade de reservas realizadas</h2>";
         echo "<table>
                 <tr>
@@ -93,7 +81,6 @@
 
         $stmt_total_reservas->close();
 
-        // Consulta para usuários e suas reservas
         $stmt_users_reservas = $mysqli->prepare("
             SELECT users.name AS user_name, aparelhos.modelo AS aparelho_modelo, reservas.data_emprestimo, reservas.horario_emprestimo 
             FROM users 
@@ -112,7 +99,6 @@
 
         $stmt_users_reservas->bind_result($user_name, $aparelho_modelo, $reserva_data_emprestimo, $reserva_horario_emprestimo);
 
-        // Título para a lista de usuários e suas reservas
         echo "<h2>Lista de todos os usuários, mesmo que alguns usuários não tenham reserva</h2>";
         echo "<table>
                 <tr>
@@ -139,7 +125,6 @@
 
         $stmt_users_reservas->close();
 
-        // Consulta para aparelhos e suas reservas
         $stmt_aparelhos_reservas = $mysqli->prepare("
             SELECT aparelhos.categoria, aparelhos.marca, COUNT(aparelho_reserva.reserva_id) AS total_reservas 
             FROM aparelhos 
@@ -151,7 +136,6 @@
 
         $stmt_aparelhos_reservas->bind_result($categoria, $marca, $total_reservas_aparelho);
 
-        // Título para a lista de categorias, marcas e quantidade de reservas
         echo "<h2>Lista de cada categoria e marca de cada aparelho e a quantidade de vezes que cada tipo de aparelho foi reservado</h2>";
         echo "<table>
                 <tr>
