@@ -29,6 +29,13 @@ header {
     box-shadow: 0 0 10px #0A4800;
 }
 
+.header {
+    background-color: #06864a;
+    box-shadow: 0 0 10px #0A4800;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 li {
     list-style: none;
     font-family: 'Poppins', serif;

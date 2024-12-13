@@ -33,52 +33,6 @@ $stmt->execute();
 
 $stmt->bind_result($userName, $data_emprestimo, $devolucao_prevista, $horario_devolucao_emprestimo, $aparelho_modelos);
 
-echo "<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Estilo para as células da tabela */
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    background-color: #fff;
-    color: #333;
-}
-
-th {
-    background-color: #06864a;
-    color: #fff;
-    font-weight: bold;
-}
-
-td {
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-table {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.table-container {
-    padding: 50px;
-    background-color: #fafafa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-    </style>";
-
 echo "<table>
         <tr>
             <th>Nome do Usuário</th>

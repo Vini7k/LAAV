@@ -1,7 +1,7 @@
 <section>
-    <header>
+    <header class="header">
         <h2 class="text-lg font-medium text-gray-200 dark:text-gray-100">
-            {{ __('Infomações do perfil') }}
+        {{ __('Informações do perfil') }}
         </h2>
 
         <p class="mt-1 text-sm text-white dark:text-gray-400">

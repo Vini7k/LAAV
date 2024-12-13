@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AparelhoController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservaController;
@@ -13,16 +14,16 @@ Route::view('/', 'auth/login');
 Route::view('/agendamentos', 'agendamentos')->name('agendamentos');
 Route::view('/esq-senha', 'esq-senha')->name('esq-senha');
 Route::view('/paginateste', 'paginateste')->name('paginateste');
+Route::view('/relatorios', 'relatorios')->name('relatorios');
 
 
 Route::middleware('auth')->group(function () {
     
-    /* RESERVA */
     Route::get('/dashboard', [ReservaController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [ReservaController::class, 'store'])->name('reserva.store');
-    
 
-    /* APARELHOS */
+    Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+
     Route::match(['get', 'post'], '/aparelhos', AparelhoController::class)->name('aparelhos.index');
     Route::get('/aparelhos/create', [AparelhoController::class, 'create'])->name('aparelhos.create');
     Route::post('/aparelhos/store', [AparelhoController::class, 'store'])->name('aparelhos.store');
@@ -31,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/aparelhos/{id}', [AparelhoController::class, 'update'])->name('aparelhos.update');
     Route::delete('/aparelhos/{id}', [AparelhoController::class, 'destroy'])->name('aparelhos.destroy');
 
-    /*PERFIL*/ 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -14,7 +14,7 @@
       <header>
           <x-nav-bar/>
       </header>
-      <div class='caixa'>
+        <div class='caixa'>
           <div class='div-principal'>
                 <h1>AGENDAMENTOS</h1>
                 <div class=form-step>

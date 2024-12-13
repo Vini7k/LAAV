@@ -1,0 +1,82 @@
+/* Resetando o margin e o padding do body para evitar margens indesejadas */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%; /* Garante que o conteúdo ocupe toda a altura da tela */
+}
+
+/* Título h1 */
+h1 {
+    margin-top: 30px; /* Espaço acima do título */
+    font-size: 2.5em; /* Tamanho do título */
+    color: #333; /* Cor do texto */
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1; /* Garante que o título esteja acima da tabela */
+}
+
+/* Estilos da tabela */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto; /* Espaço entre a tabela e outros elementos */
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Estilo das células da tabela */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+}
+
+th {
+    background-color: #06864a;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+/* Estilos da div que envolve a tabela */
+.table-container {
+    padding: 50px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1600px;
+}
+
+/* Estilos da etapa do formulário */
+.form-step {
+    margin: 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 3rem;
+    width: 100%;
+    height: auto;
+    max-width: 1600px;
+}
+
+/* Estilo para os títulos h2 dentro da tabela */
+h2 {
+    font-size: 20px; /* Tamanho de fonte menor */
+    font-weight: bold; /* Negrito */
+    color: #333; /* Cor do texto */
+    margin: 10px auto; /* Espaçamento acima e abaixo do título */
+    padding-left: 0; /* Sem padding à esquerda */
+    text-align: left; /* Alinha o título à esquerda */
+    border-bottom: 2px solid #06864a; /* Linha verde embaixo do título */
+    width: 80%; /* Título ocupa toda a largura disponível */
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+}

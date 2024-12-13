@@ -1,5 +1,5 @@
 <section>
-    <header>
+    <header class="header">
         <h2 class="text-lg font-medium text-gray-200 dark:text-gray-100">
             {{ __('Atualizar senha') }}
         </h2>
