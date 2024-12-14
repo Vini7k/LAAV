@@ -121,7 +121,7 @@
 
 .form-input #cat:focus, input:focus {
     border: 2px solid #68ce2c;
-    box-shadow: 0 0 4px #fff;;
+    box-shadow: 0 0 4px #fff; 
 }
 
 .span-label {
@@ -185,7 +185,6 @@ input[type="file"] {
     border: 2px dashed #999;
     border-radius: 15px;
     background: transparent;
-    
 }
 
 #img {
@@ -198,7 +197,7 @@ input[type="file"] {
 
 .img-selecionada {
     border: 2px solid #06864a;
-    box-shadow: 0 0 4px #fff;;
+    box-shadow: 0 0 4px #fff;
 }
 
 .btn-add-aparelho  {
@@ -242,17 +241,20 @@ input[type="file"] {
 
 .imagem {
     width: 100%; /* A largura será de 100% do container */
-    height: 250px; /* Altura fixa de 200px para todas as imagens */
+    max-width: 300px; /* Define um limite máximo de largura */
+    height: auto; /* Altura será ajustada automaticamente */
+    aspect-ratio: 4 / 3; /* Força a proporção de 4:3 */
     object-fit: cover; /* Faz com que a imagem cubra o espaço sem distorcer */
     border-radius: 20px; /* Borda arredondada */
-    
 }
 
 .img-placeholder {
     color: #343434;
     background-color: #c6c6c6;
     width: 100%; /* Largura fixa para o placeholder */
-    height: 250px; /* Altura fixa para o placeholder */
+    max-width: 300px; /* Limita a largura do placeholder */
+    height: auto; /* Altura ajustada automaticamente */
+    aspect-ratio: 4 / 3; /* Força a proporção de 4:3 */
     margin: 10px;
     border-radius: 20px;
     display: flex;
