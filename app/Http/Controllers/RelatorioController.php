@@ -11,9 +11,24 @@ class RelatorioController extends Controller
      */
     public function index()
     {
-        return view('relatorios'); // Nome do arquivo da view sem a extensão .php
+        return view('relatorios.index'); 
     }
-
+    public function pagina1() {
+        return view('relatorios.pagina1'); 
+    }
+    
+    public function pagina2() {
+        return view('relatorios.pagina2');
+    }
+    
+    public function pagina3() {
+        return view('relatorios.pagina3');
+    }
+    
+    public function pagina4() {
+        return view('relatorios.pagina4');
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

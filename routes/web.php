@@ -9,20 +9,20 @@ use App\Models\Aparelho;
 use App\Models\Reserva;
 use Illuminate\Support\Facades\Route;
 
-
 Route::view('/', 'auth/login');
 Route::view('/agendamentos', 'agendamentos')->name('agendamentos');
 Route::view('/esq-senha', 'esq-senha')->name('esq-senha');
 Route::view('/paginateste', 'paginateste')->name('paginateste');
-Route::view('/relatorios', 'relatorios')->name('relatorios');
-
 
 Route::middleware('auth')->group(function () {
-    
     Route::get('/dashboard', [ReservaController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [ReservaController::class, 'store'])->name('reserva.store');
 
-    Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+    Route::get('/relatorios/pagina1', action: [RelatorioController::class, 'pagina1'])->name('relatorios.pagina1');
+Route::get('/relatorios/pagina2', action: [RelatorioController::class, 'pagina2'])->name('relatorios.pagina2');
+Route::get('/relatorios/pagina3', action: [RelatorioController::class, 'pagina3'])->name('relatorios.pagina3');
+Route::get('/relatorios/pagina4', action: [RelatorioController::class, 'pagina4'])->name('relatorios.pagina4');
+
 
     Route::match(['get', 'post'], '/aparelhos', AparelhoController::class)->name('aparelhos.index');
     Route::get('/aparelhos/create', [AparelhoController::class, 'create'])->name('aparelhos.create');
@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
- 
 });
 
 require __DIR__.'/auth.php';
