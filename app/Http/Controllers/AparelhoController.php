@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aparelho;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AparelhoController extends Controller
 {
     /**
+     * Apply authentication middleware.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      */
-    public function index(Aparelho $aparelhos)
+    public function index()
     {
-        $aparelhos = $aparelhos->all();
-        
-        return view('aparelhos/index', compact('aparelhos'));
+        $aparelhos = Aparelho::all();
+
+        return view('aparelhos.index', compact('aparelhos'));
     }
 
     /**
@@ -23,7 +31,7 @@ class AparelhoController extends Controller
      */
     public function create()
     {
-        return view('aparelhos/create');
+        return view('aparelhos.create');
     }
 
     /**
@@ -31,6 +39,7 @@ class AparelhoController extends Controller
      */
     public function store(Request $request, Aparelho $aparelhos)
     {
+        // Validação dos dados de entrada
         $data = $request->all();
         $data['status'] = 'Disponível';
 
@@ -44,20 +53,20 @@ class AparelhoController extends Controller
 
         $aparelhos->create($data);
 
-        return redirect()->route('aparelhos.index');
-    }
+        return redirect()->route('aparelhos.index')->with('success', 'Aparelho criado com sucesso.');    }
 
     /**
      * Display the specified resource.
      */
     public function show(string|int $id)
     {
-        if (!$aparelho = Aparelho::find($id))
-        {
-            return back();
+        $aparelho = Aparelho::find($id);
+
+        if (!$aparelho) {
+            return redirect()->route('aparelhos.index')->with('error', 'Aparelho não encontrado.');
         }
-        
-        return view('aparelhos/show', compact('aparelho'));
+
+        return view('aparelhos.show', compact('aparelho'));
     }
 
     /**
@@ -65,12 +74,13 @@ class AparelhoController extends Controller
      */
     public function edit(string|int $id)
     {
-        if (!$aparelho = Aparelho::find($id))
-        {
-            return back();
+        $aparelho = Aparelho::find($id);
+
+        if (!$aparelho) {
+            return redirect()->route('aparelhos.index')->with('error', 'Aparelho não encontrado.');
         }
 
-        return view('aparelhos/edit', compact('aparelho'));
+        return view('aparelhos.edit', compact('aparelho'));
     }
 
     /**
@@ -78,14 +88,33 @@ class AparelhoController extends Controller
      */
     public function update(Request $request, string|int $id)
     {
-        if (!$aparelho = Aparelho::find($id))
-        {
-            return back();
+        $aparelho = Aparelho::find($id);
+
+        if (!$aparelho) {
+            return redirect()->route('aparelhos.index')->with('error', 'Aparelho não encontrado.');
         }
 
-        $aparelho->update($request);
+        // Validação dos dados de entrada
+        $data = $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
-        return redirect()->route('aparelhos.index');
+        // Upload seguro de imagem, se fornecida
+        if ($request->file('image')) {
+            // Remove imagem antiga, se existir
+            if ($aparelho->image) {
+                Storage::disk('public')->delete($aparelho->image);
+            }
+
+            $data['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        // Atualiza o registro
+        $aparelho->update($data);
+
+        return redirect()->route('aparelhos.index')->with('success', 'Aparelho atualizado com sucesso.');
     }
 
     /**
@@ -93,22 +122,38 @@ class AparelhoController extends Controller
      */
     public function destroy(string|int $id)
     {
-        if (!$aparelho = Aparelho::find($id))
-        {
-            return back();
+        $aparelho = Aparelho::find($id);
+
+        if (!$aparelho) {
+            return redirect()->route('aparelhos.index')->with('error', 'Aparelho não encontrado.');
+        }
+
+        // Remove imagem associada, se existir
+        if ($aparelho->image) {
+            Storage::disk('public')->delete($aparelho->image);
         }
 
         $aparelho->delete();
 
-        return redirect()->route('aparelhos.index');
+        return redirect()->route('aparelhos.index')->with('success', 'Aparelho removido com sucesso.');
     }
 
+    /**
+     * Filter appliances by category.
+     */
     public function __invoke(Request $request)
     {
-        return view('aparelhos/index', [
-            'aparelhos' => Aparelho::query()
-                ->where('categoria', 'like', '%' . request()->btnCategoria . '%')
-                ->get()
+        // Validação do parâmetro de filtro
+        $validated = $request->validate([
+            'btnCategoria' => 'nullable|string|max:255',
         ]);
+
+        $aparelhos = Aparelho::query()
+            ->when($validated['btnCategoria'] ?? null, function ($query, $categoria) {
+                $query->where('categoria', 'like', '%' . $categoria . '%');
+            })
+            ->get();
+
+        return view('aparelhos.index', compact('aparelhos'));
     }
 }
