@@ -7,10 +7,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#">Relatórios</a>
                 <div class="dropdown-content">
-                    <a href="{{ route('relatorios.pagina1') }}">Relatórios</a>
-                    <a href="{{ route('relatorios.pagina2') }}">Relatórios</a>
-                    <a href="{{ route('relatorios.pagina3') }}">Relatórios</a>
-                    <a href="{{ route('relatorios.pagina4') }}">Relatórios</a>
+                    <a href="{{ route('relatorios.pagina1') }}">Reservas e Aparelhos</a>
+                    <a href="{{ route('relatorios.pagina2') }}">Quantidade de Reservas</a>
+                    <a href="{{ route('relatorios.pagina3') }}">Usuários</a>
+                    <a href="{{ route('relatorios.pagina4') }}">Aparelhos e Quantidade de Reservas</a>
                 </div>
             </li>
             <span id="line"></span>

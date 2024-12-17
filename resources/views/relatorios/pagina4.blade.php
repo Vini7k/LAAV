@@ -29,33 +29,41 @@
         }
 
         $stmt_aparelhos_reservas = $mysqli->prepare("
-            SELECT aparelhos.categoria, aparelhos.marca, COUNT(aparelho_reserva.reserva_id) AS total_reservas 
-            FROM aparelhos 
-            JOIN aparelho_reserva ON aparelhos.id = aparelho_reserva.aparelho_id 
-            GROUP BY aparelhos.categoria, aparelhos.marca
-        ");
+    SELECT aparelhos.categoria, aparelhos.marca, 
+           COALESCE(COUNT(aparelho_reserva.reserva_id), 0) AS total_reservas 
+    FROM aparelhos 
+    LEFT JOIN aparelho_reserva ON aparelhos.id = aparelho_reserva.aparelho_id 
+    GROUP BY aparelhos.categoria, aparelhos.marca
+");
 
-        $stmt_aparelhos_reservas->execute();
+$stmt_aparelhos_reservas->execute();
 
-        $stmt_aparelhos_reservas->bind_result($categoria, $marca, $total_reservas_aparelho);
+$stmt_aparelhos_reservas->bind_result($categoria, $marca, $total_reservas_aparelho);
 
-        echo "<h2>Lista de cada categoria e marca de cada aparelho e a quantidade de vezes que cada tipo de aparelho foi reservado</h2>";
-        echo "<table>
-                <tr>
-                    <th>Categoria</th>
-                    <th>Marca</th>
-                    <th>Total de Reservas</th>
-                </tr>";
+echo "<h2>Lista de cada categoria e marca de aparelho e a quantidade de vezes que cada tipo de aparelho foi reservado</h2>";
+echo "<table>
+        <tr>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Total de Reservas</th>
+        </tr>";
 
-        while ($stmt_aparelhos_reservas->fetch()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($categoria, ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "<td>" . htmlspecialchars($marca, ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "<td>" . htmlspecialchars($total_reservas_aparelho, ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "</tr>";
-        }
+while ($stmt_aparelhos_reservas->fetch()) {
+    echo "<tr>";
+    echo "<td>" . htmlspecialchars($categoria, ENT_QUOTES, 'UTF-8') . "</td>";
+    echo "<td>" . htmlspecialchars($marca, ENT_QUOTES, 'UTF-8') . "</td>";
+    
+    if ($total_reservas_aparelho == 0) {
+        echo "<td>Não há reservas</td>";
+    } else {
+        echo "<td>" . htmlspecialchars($total_reservas_aparelho, ENT_QUOTES, 'UTF-8') . "</td>";
+    }
 
-        echo "</table>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
 
         $stmt_aparelhos_reservas->close();
 
