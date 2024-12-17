@@ -40,7 +40,7 @@ $stmt_aparelhos_reservas->execute();
 
 $stmt_aparelhos_reservas->bind_result($categoria, $marca, $total_reservas_aparelho);
 
-echo "<h2>Lista de cada categoria e marca de aparelho e a quantidade de vezes que cada tipo de aparelho foi reservado</h2>";
+echo "<h2>Lista de cada aparelho e a quantidade de vezes que cada um reservado</h2>";
 echo "<table>
         <tr>
             <th>Categoria</th>
