@@ -46,6 +46,7 @@ td {
     cursor: pointer;
 }
 
+
 .calendar-container {
     position: relative;
     top: 80px;
@@ -148,7 +149,27 @@ h2 {
     text-align: center;
 }
 
-
+option {
+    color: 343434;
+    width: 100%; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    font-size: 25px;
+    padding: 5px 10px;
+}
+select {
+    width: 300px; /* Largura fixa para o select */
+    max-width: 100%; /* Garante que ele respeite o tamanho do container */
+    padding: 5px;
+    border: 1px solid #343434;
+    border-radius: 4px;
+    font-size: 15px;
+    appearance: none; /* Remove a aparência padrão do sistema */
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 15px;
+}
 /* Seleção equipamento */
 
 #select-equip {
