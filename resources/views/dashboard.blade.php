@@ -138,16 +138,34 @@
                 document.getElementById("form-agend").submit();
             }
         </script>
+        <script> 
+            document.addEventListener('DOMContentLoaded', function () {
+                const calendar = document.getElementById('calendar');
+
+                calendar.addEventListener('click', function (event) {
+                    const selectedDate = event.target.dataset.date; 
+                    if (selectedDate) {
+                        document.getElementById('data-reserva').value = selectedDate;
+                        atualizarAparelhosDisponiveis();
+                    }
+                });
+            });
+        </script>
         <script type="text/javascript">
         function atualizarAparelhosDisponiveis() {
             const horarioEmprestimo = document.getElementById('horario_emprestimo').value;
             const horarioDevolucao = document.getElementById('horario_devolucao_emprestimo').value;
-            
-            fetch(`/aparelhos-disponiveis?horario_emprestimo=${horarioEmprestimo}&horario_devolucao_emprestimo=${horarioDevolucao}`)
+            const dataEmprestimo = document.getElementById('data-reserva').value; // A data que foi selecionada no calendário
+
+            if (!dataEmprestimo || !horarioEmprestimo || !horarioDevolucao) {
+                return; 
+            }
+
+            fetch(`/aparelhos-disponiveis?horario_emprestimo=${horarioEmprestimo}&horario_devolucao_emprestimo=${horarioDevolucao}&data_emprestimo=${dataEmprestimo}`)
                 .then(response => response.json())
                 .then(data => {
                     const aparelhoSelect = document.getElementById('aparelho_checkbox');
-                    aparelhoSelect.innerHTML = ''; 
+                    aparelhoSelect.innerHTML = '';
 
                     data.forEach(aparelho => {
                         const option = document.createElement('option');
@@ -160,13 +178,12 @@
                     console.error('Erro ao buscar aparelhos:', error);
                 });
         }
-
         document.getElementById('horario_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
         document.getElementById('horario_devolucao_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
+        document.getElementById('data-reserva').addEventListener('change', atualizarAparelhosDisponiveis);
 
-        document.addEventListener('DOMContentLoaded', atualizarAparelhosDisponiveis);
-    </script>
+        </script>
 
     </body>
 
-    </html>
+</html>

@@ -22,23 +22,19 @@ class ReservaController extends Controller
     }
     public function obterAparelhosDisponiveis(Request $request)
 {
-    // Receber os parâmetros de horário de empréstimo e devolução via AJAX
     $horarioEmprestimo = $request->input('horario_emprestimo');
     $horarioDevolucao = $request->input('horario_devolucao_emprestimo');
     
-    // Consultar os agendamentos existentes no banco de dados
     $reservas = Reserva::where(function($query) use ($horarioEmprestimo, $horarioDevolucao) {
         $query->where('horario_emprestimo', '=', $horarioEmprestimo)
               ->orWhere('horario_devolucao_emprestimo', '=', $horarioDevolucao);
     })
     ->get();
     
-    // Pegar os IDs dos aparelhos que estão reservados
     $aparelhosReservados = $reservas->flatMap(function($reserva) {
         return $reserva->aparelhos->pluck('id');
     })->unique();
 
-    // Pegar todos os aparelhos disponíveis
     $aparelhosDisponiveis = Aparelho::whereNotIn('id', $aparelhosReservados)->get();
 
     return response()->json($aparelhosDisponiveis);
