@@ -92,7 +92,6 @@
                             <select name="aparelho_checkbox[]" id="aparelho_checkbox" multiple>
                                 @foreach($aparelhos as $aparelho)
                                     <option value="{{ $aparelho->id }}">{{ $aparelho->marca . " " . $aparelho->modelo }}</option>
-                                    <img src="{{ url("storage/{$aparelho->image}") }}" class="imagem">
                                 @endforeach
                             </select>
                         </div>
@@ -139,6 +138,40 @@
             document.getElementById("form-agend").submit();
         }
     </script>
+    <script type="text/javascript">
+    // Função para atualizar os aparelhos disponíveis com base nos horários
+    function atualizarAparelhosDisponiveis() {
+        const horarioEmprestimo = document.getElementById('horario_emprestimo').value;
+        const horarioDevolucao = document.getElementById('horario_devolucao_emprestimo').value;
+        
+        // Fazer uma requisição AJAX para o servidor
+        fetch(`/aparelhos-disponiveis?horario_emprestimo=${horarioEmprestimo}&horario_devolucao_emprestimo=${horarioDevolucao}`)
+            .then(response => response.json())
+            .then(data => {
+                const aparelhoSelect = document.getElementById('aparelho_checkbox');
+                aparelhoSelect.innerHTML = ''; // Limpa as opções anteriores
+
+                // Preenche o select com os aparelhos disponíveis
+                data.forEach(aparelho => {
+                    const option = document.createElement('option');
+                    option.value = aparelho.id;
+                    option.textContent = `${aparelho.marca} ${aparelho.modelo}`;
+                    aparelhoSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar aparelhos:', error);
+            });
+    }
+
+    // Escutar mudanças nos horários de retirada e devolução
+    document.getElementById('horario_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
+    document.getElementById('horario_devolucao_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
+
+    // Chamar a função ao carregar a página, para preencher a lista inicial de aparelhos
+    document.addEventListener('DOMContentLoaded', atualizarAparelhosDisponiveis);
+</script>
+
 </body>
 
 </html>

@@ -14,6 +14,8 @@ Route::view('/agendamentos', 'agendamentos')->name('agendamentos');
 Route::view('/esq-senha', 'esq-senha')->name('esq-senha');
 Route::view('/paginateste', 'paginateste')->name('paginateste');
 
+Route::get('/aparelhos-disponiveis', [ReservaController::class, 'obterAparelhosDisponiveis'])->name('aparelhos.disponiveis');
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [ReservaController::class, 'index'])->name('dashboard');
     Route::post('/dashboard/store', [ReservaController::class, 'store'])->name('reserva.store');
