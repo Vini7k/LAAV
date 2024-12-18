@@ -23,22 +23,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         html += "</tr><tr>";
 
-        // Adicionar dias do mês anterior se necessário
         for (let day = lastDayOfPrev - firstDay + 1; day <= lastDayOfPrev; day++) {
             html += `<td class="other-month">${day}</td>`;
         }
 
         const today = new Date();
         const endOfNextWeek = new Date(today);
-        endOfNextWeek.setDate(today.getDate() + (7 - today.getDay()) + 7); // Calcula o próximo domingo (fim da próxima semana)
+        endOfNextWeek.setDate(today.getDate() + (7 - today.getDay()) + 7); 
 
-        // Criar os dias do mês
         for (let day = 1; day <= daysInMonth; day++) {
             const clickedDate = new Date(year, month, day);
 
-            // Permitir agendamento até o final da próxima semana (14 dias no total)
             if (clickedDate.getTime() >= today.getTime() && clickedDate.getTime() <= endOfNextWeek.getTime()) {
-                const isSunday = clickedDate.getDay() === 0; // 0 representa domingo
+                const isSunday = clickedDate.getDay() === 0; 
 
                 if (!isSunday) {
                     html += `<td data-day="${day}" data-date="${clickedDate.toISOString()}">${day}</td>`;
@@ -54,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
 
-        // Adicionar os dias restantes do próximo mês, se necessário
         const lastDay = new Date(year, month + 1, 0).getDay();
         const remainingDays = 6 - lastDay;
         for (let day = 1; day <= remainingDays; day++) {
@@ -135,4 +131,28 @@ document.addEventListener("DOMContentLoaded", function() {
     nextButton.addEventListener("click", showNextMonth);
 
     createCalendar(today.getFullYear(), today.getMonth());
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendar = document.getElementById('calendar');
+
+        calendar.addEventListener('click', function (event) {
+            const selectedDate = event.target.dataset.date; 
+            if (selectedDate) {
+                // Atualiza o campo de input com a data selecionada
+                document.getElementById('data-reserva').value = selectedDate;
+
+                // Atualiza o span com o dia formatado
+                const clickedDate = new Date(selectedDate);
+                const day = clickedDate.getDate();
+                const month = clickedDate.toLocaleString('pt-BR', { month: 'short' });
+                const year = clickedDate.getFullYear();
+
+                const formattedDate = `${day} ${month} ${year}`;
+                document.getElementById('data-agend').textContent = `para ${formattedDate}`;
+
+                // Chama a função para atualizar os aparelhos disponíveis
+                atualizarAparelhosDisponiveis();
+            }
+        });
+    });
 });

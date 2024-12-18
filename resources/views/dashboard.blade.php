@@ -109,20 +109,5 @@
         <script src="{{ asset(path: 'js/pag_inicial/aparelhos-selec.js') }}"></script>
         <script src="{{ asset(path: 'js/pag_inicial/hr-agend.js') }}"></script>
         <script src="{{ asset(path: 'js/pag_inicial/dis-aparelhos.js') }}"></script>
-        <script> 
-            document.addEventListener('DOMContentLoaded', function () {
-                const calendar = document.getElementById('calendar');
-
-                calendar.addEventListener('click', function (event) {
-                    const selectedDate = event.target.dataset.date; 
-                    if (selectedDate) {
-                        document.getElementById('data-reserva').value = selectedDate;
-                        atualizarAparelhosDisponiveis();
-                    }
-                });
-            });
-        </script>
-
     </body>
-
 </html>
