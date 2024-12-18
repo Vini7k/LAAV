@@ -85,7 +85,6 @@
                                 <button class="button btn-navigate-form-step btn-next" type="button" step_number="3">Avançar</button>
                             </div>
                         </section>
-
                         <section id="step-3" class="form-step div-none steps-css">
                             <h2 class="font-normal">Selecione o equipamento</h2>
                             <div class="step-elem">
@@ -98,6 +97,7 @@
                             <div class="step-elem">
                                 <button class="button btn-navigate-form-step btn-prev" type="button" step_number="2">Voltar</button>
                                 <button class="button submit-btn" type="button" onclick="enviar();">Confirmar</button>
+                                <button class="button btn-cancelar btn-navigate-form-step" type="button" step_number="1" onclick="cancelarSelecao();">Cancelar</button>
                             </div>
                         </section>
                     </form>
@@ -106,38 +106,9 @@
         </main>
         <script src="{{ asset('js/pag_inicial/mini-calendario.js') }}"></script>
         <script src="{{ asset('js/pag_inicial/form.js') }}"></script>
-        <script src="{{ asset('js/pag_inicial/aparelhos-selec.js') }}"></script>
-
-        <script type="text/javascript">
-            function preencherHorarios() {
-                const horarioRetirada = document.getElementById('horario_emprestimo');
-                const horarioDevolucao = document.getElementById('horario_devolucao_emprestimo');
-                
-                const startTime = 6; 
-                const endTime = 23; 
-                let options = '';
-
-                for (let h = startTime; h < endTime; h++) {
-                    for (let m = 0; m < 60; m += 30) {
-                        let hour = String(h).padStart(2, '0'); 
-                        let minute = String(m).padStart(2, '0'); 
-                        options += `<option value="${hour}:${minute}">${hour}:${minute}</option>`;
-                    }
-                }
-
-                horarioRetirada.innerHTML = options;
-                horarioDevolucao.innerHTML = options;
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                preencherHorarios();
-            });
-
-            function enviar() {
-                alert("Gravando os dados do agendamento");
-                document.getElementById("form-agend").submit();
-            }
-        </script>
+        <script src="{{ asset(path: 'js/pag_inicial/aparelhos-selec.js') }}"></script>
+        <script src="{{ asset(path: 'js/pag_inicial/hr-agend.js') }}"></script>
+        <script src="{{ asset(path: 'js/pag_inicial/dis-aparelhos.js') }}"></script>
         <script> 
             document.addEventListener('DOMContentLoaded', function () {
                 const calendar = document.getElementById('calendar');
@@ -150,38 +121,6 @@
                     }
                 });
             });
-        </script>
-        <script type="text/javascript">
-        function atualizarAparelhosDisponiveis() {
-            const horarioEmprestimo = document.getElementById('horario_emprestimo').value;
-            const horarioDevolucao = document.getElementById('horario_devolucao_emprestimo').value;
-            const dataEmprestimo = document.getElementById('data-reserva').value; // A data que foi selecionada no calendário
-
-            if (!dataEmprestimo || !horarioEmprestimo || !horarioDevolucao) {
-                return; 
-            }
-
-            fetch(`/aparelhos-disponiveis?horario_emprestimo=${horarioEmprestimo}&horario_devolucao_emprestimo=${horarioDevolucao}&data_emprestimo=${dataEmprestimo}`)
-                .then(response => response.json())
-                .then(data => {
-                    const aparelhoSelect = document.getElementById('aparelho_checkbox');
-                    aparelhoSelect.innerHTML = '';
-
-                    data.forEach(aparelho => {
-                        const option = document.createElement('option');
-                        option.value = aparelho.id;
-                        option.textContent = `${aparelho.marca} ${aparelho.modelo}`;
-                        aparelhoSelect.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.error('Erro ao buscar aparelhos:', error);
-                });
-        }
-        document.getElementById('horario_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
-        document.getElementById('horario_devolucao_emprestimo').addEventListener('change', atualizarAparelhosDisponiveis);
-        document.getElementById('data-reserva').addEventListener('change', atualizarAparelhosDisponiveis);
-
         </script>
 
     </body>

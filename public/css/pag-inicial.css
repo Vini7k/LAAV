@@ -155,8 +155,8 @@ option {
     white-space: nowrap; 
     overflow: hidden; 
     text-overflow: ellipsis; 
-    font-size: 25px;
-    padding: 5px 10px;
+    font-size: 20px;
+    padding: 5px 9px;
 }
 select {
     width: 300px; /* Largura fixa para o select */
@@ -313,8 +313,17 @@ li {
     box-shadow: 0 0 8px #2c2c2c;
 }
 
-
-/* 1- horário */
+.btn-cancelar {
+    margin-left: 8px;
+    border: none;
+    cursor: pointer;
+    color: #d9d9d9;
+    background-color: #ff3b3b;
+}
+.btn-cancelar:hover {
+    background-color: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b;
+}
 .input-time {
     font-size: 28px;
     padding: 4px;
@@ -325,7 +334,6 @@ li {
     background-color: transparent;
 }
 
-/* 2- APARELHO/ */
 .lista-aparelhos {
     display: flex;
 }

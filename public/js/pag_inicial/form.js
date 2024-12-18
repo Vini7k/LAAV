@@ -65,3 +65,12 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
         navigateToFormStep(stepNumber);
     });
 });
+
+
+function cancelarSelecao() {
+    preencherHorarios()
+
+    const highlightedDays = document.querySelectorAll('td.highlight');
+    highlightedDays.forEach(day => day.classList.remove('highlight'));
+    
+}
