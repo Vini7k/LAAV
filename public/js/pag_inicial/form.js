@@ -72,5 +72,6 @@ function cancelarSelecao() {
 
     const highlightedDays = document.querySelectorAll('td.highlight');
     highlightedDays.forEach(day => day.classList.remove('highlight'));
-    
+    document.getElementById('data-agend').textContent = 'para . . .';
 }
+
