@@ -1,5 +1,5 @@
 <nav class="navbar">
-        <a class="logo" href="dashboard">LAAV</a>
+        <a class="logo" href="{{ route('dashboard') }}">LAAV</a>
         <ul class="nav-list">
             <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Início</a></li>
             <span id="line"></span>
